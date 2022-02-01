@@ -31,7 +31,7 @@ if uploaded_file is not None:
         
 
     image = Image.open("app/streamlit-ss/yolov5/runs/detect/exp/image.jpg")
->>>>>>> 350240e7fb3f7c4d7dd975d5ea3d92a6141a13ea
+
     st.image(image, caption='Prediction.', use_column_width=True)
 
     st.write("")
