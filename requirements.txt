@@ -2,7 +2,10 @@ flask
 requests
 black
 streamlit
+<<<<<<< HEAD
 opencv
+=======
+>>>>>>> 350240e7fb3f7c4d7dd975d5ea3d92a6141a13ea
 cv
 
 matplotlib>=3.2.2
