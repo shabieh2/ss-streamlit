@@ -2,7 +2,6 @@ flask
 requests
 black
 streamlit
-opencv
 cv
 
 matplotlib>=3.2.2
