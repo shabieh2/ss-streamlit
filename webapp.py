@@ -18,7 +18,9 @@ if uploaded_file is not None:
     st.write("Classifying using Ember Optics Proprietary Technology...")
     image.save("image.jpg", format='JPEG', quality=75)
     os.system("python yolov5/detect.py --source image.jpg --weights ./model/best.pt --save-txt")
-    image = Image.open("yolov5/runs/detect/exp/image.jpg")
+    #image = Image.open("yolov5/runs/detect/exp/image.jpg")
+    image = Image.open("/home/appuser/venv/lib/python3.7/site-packages/streamlit/static/image.jpg")
+
     st.image(image, caption='Predictions.', use_column_width=True)
     
     
@@ -27,6 +29,9 @@ if uploaded_file is not None:
     
         
     
+=======
+    st.image(image, caption='Prediction.', use_column_width=True)
+
     st.write("")
 
     if os.path.exists("yolov5/runs/detect/exp/labels/image.txt"):
