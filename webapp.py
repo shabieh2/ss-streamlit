@@ -14,11 +14,11 @@ if uploaded_file is not None:
     image.save("image.jpg", format='JPEG', quality=75)
     os.system("python yolov5/detect.py --source image.jpg --weights ./model/best.pt  --save-txt")
 
-    image = Image.open("yolov5/runs/detect/exp/image.jpg")
+    image = Image.open("app/streamlit-ss/yolov5/runs/detect/exp/image.jpg")
     st.image(image, caption='Prediction.', use_column_width=True)
     st.write("")
 
-    if os.path.exists("yolov5/runs/detect/exp/labels/image.txt"):
+    if os.path.exists("app/streamlit-ss/yolov5/runs/detect/exp/labels/image.txt"):
         st.write("Detected :sunglasses: :")
         with open ("yolov5/runs/detect/exp/labels/image.txt", 'r') as f:
             line = f.readlines()
