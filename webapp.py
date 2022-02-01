@@ -15,7 +15,7 @@ if uploaded_file is not None:
     os.system("python yolov5/detect.py --source image.jpg --weights ./model/best.pt  --save-txt")
 
     image = Image.open("yolov5/runs/detect/exp/image.jpg")
-    st.image(image, caption='Uploaded Image.', use_column_width=True)
+    st.image(image, caption='Prediction.', use_column_width=True)
     st.write("")
 
     if os.path.exists("yolov5/runs/detect/exp/labels/image.txt"):
@@ -28,7 +28,7 @@ if uploaded_file is not None:
     else: 
         st.write("No detection.")
 
-    os.system("del image.jpg")
+    #os.system("del image.jpg")
     os.remove("image.jpg")
     shutil.rmtree("yolov5/runs/")
     
