@@ -1,6 +1,9 @@
 flask
 requests
 black
+streamlit as st
+opencv
+cv
 
 matplotlib>=3.2.2
 numpy>=1.18.5
