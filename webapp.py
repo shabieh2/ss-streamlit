@@ -12,11 +12,7 @@ import os
 import subprocess
 import random
 from PIL import Image
-import shutil
-import easyocr
-from stqdm import stqdm
-from skimage import io
-import json
+
 
 st.title("Ember Optics Yolov5 Object Detection")
 
