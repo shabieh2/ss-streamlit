@@ -4,25 +4,73 @@ import shutil
 import streamlit as st
 from PIL import Image
 import torch
+import tempfile
+import streamlit as st
+from configparser import ConfigParser
+#import gdown
+import os
+import subprocess
+import random
+from PIL import Image
+import shutil
+import easyocr
+from stqdm import stqdm
+from skimage import io
+import json
 
 st.title("Ember Optics Yolov5 Object Detection")
 
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg","jpeg","png"])
 if uploaded_file is not None:
     
 
     image = Image.open(uploaded_file)
+    model =torch.hub.load('./yolov5', 'custom', path='./model/best.pt',source='local')  #  source='local',force_reload = recache latest code
+    model.eval()
+
     
     st.image(image, caption='Uploaded Image.', use_column_width=True)
+    imgs2=[image]
+    results = model(imgs2, size=640)
+    az=results.pandas().xyxy[0].name.unique()
+    st.text(az)
+    results.render()
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    image2 = Image.fromarray(results.imgs[0])
+    
+    st.image(image2, caption='Predicted Image.', use_column_width=True)
+    
+    #imgfile = Image.open(results)
+    #results.render()
+    #results.show()
+    #image2 = Image.open(results)
+    
+    
+    
+    #st.image(imgfile, caption='prediction Image.', use_column_width=True)
+    
+    
     st.write("")
-    st.write("Classifying using Ember Optics Proprietary Technology...")
+    
+    
+    #st.image(results, caption='Uploaded Image.', use_column_width=True)
+    #st.write("Classifying using Ember Optics Proprietary Technology...")
     image.save("image.jpg", format='JPEG', quality=75)
-    os.system("python yolov5/detect.py --source image.jpg --weights ./model/best.pt --save-txt")
+    #os.system("python yolov5/detect.py --source image.jpg --weights ./model/best.pt --save-txt")
+    
     #image = Image.open("yolov5/runs/detect/exp/image.jpg")
-    image = Image.open("/home/appuser/venv/lib/python3.7/site-packages/streamlit/static/image.jpg")
+    #mage = Image.open("/home/appuser/venv/lib/python3.7/site-packages/streamlit/static/image.jpg")
 
 
-    st.image(image, caption='Predictions.', use_column_width=True)
+    #st.image(image, caption='Predictions.', use_column_width=True)
     
     
     
@@ -30,25 +78,22 @@ if uploaded_file is not None:
     
         
 
-    image = Image.open("app/streamlit-ss/yolov5/runs/detect/exp/image.jpg")
+    #image = Image.open("app/streamlit-ss/yolov5/runs/detect/exp/image.jpg")
 
-    st.image(image, caption='Prediction.', use_column_width=True)
+    #st.image(image, caption='Prediction.', use_column_width=True)
 
     st.write("")
 
-    if os.path.exists("app/streamlit-ss/yolov5/runs/detect/exp/labels/image.txt"):
-        st.write("Detected :sunglasses: :")
-        with open ("yolov5/runs/detect/exp/labels/image.txt", 'r') as f:
-            line = f.readlines()
-            for i in range(len(line)):
-                with open("label.txt", 'r') as f:
-                    st.write(i, " ", f.read().split(",")[int(line[i].split(" ")[0])].replace("'", ""))
-    else: 
+    if len(results.pandas().xyxy[0])!=0:
+           
+           st.write('WARNING!!! FOLLOWING RISK FACTORS FOUND: ', use_column_width=True)
+           st.text(''.join([str(az[i]).upper()+' ' for i in range(len(az))]))
+    else:
         st.write("No detection.")
 
     #os.system("del image.jpg")
-    os.remove("image.jpg")
-    shutil.rmtree("yolov5/runs/")
+    #os.remove("image.jpg")
+    #shutil.rmtree("yolov5/runs/")
     
 
 
