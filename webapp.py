@@ -25,11 +25,11 @@ if uploaded_file is not None:
     model.eval()
 
     
-    st.image(image, caption='Uploaded Image.', use_column_width=True)
+    #st.image(image, caption='Uploaded Image.', use_column_width=True)
     imgs2=[image]
     results = model(imgs2, size=640)
     az=results.pandas().xyxy[0].name.unique()
-    st.text(az)
+    #st.text(az)
     results.render()
     
     
