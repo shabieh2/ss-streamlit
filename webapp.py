@@ -13,8 +13,9 @@ import subprocess
 import random
 from PIL import Image
 
-
-st.title("Ember Optics Yolov5 Object Detection")
+im1 = Image.open(./a.png)
+st.image(im1, use_column_width=True)
+st.title("Wildfire Detection")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg","jpeg","png"])
 if uploaded_file is not None:
