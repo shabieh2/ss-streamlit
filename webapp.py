@@ -13,7 +13,7 @@ import subprocess
 import random
 from PIL import Image
 
-im1 = Image.open(./a.png)
+im1 = Image.open('./a.png')
 st.image(im1, use_column_width=True)
 st.title("Wildfire Detection")
 
