@@ -578,7 +578,7 @@ class Detections:
                     annotator = Annotator(im, example=str(self.names))
                     for *box, conf, cls in reversed(pred):  # xyxy, confidence, class
                         conf2=conf+(1-conf)*0.9
-                        label = f'{self.names[int(cls)] conf2:.2f}}'
+                        label = f'{self.names[int(cls)] {conf2:.2f}'}}'
                         if crop:
                             file = save_dir / 'crops' / self.names[int(cls)] / self.files[i] if save else None
                             crops.append({'box': box, 'conf2': conf2, 'cls': cls, 'label': label,
