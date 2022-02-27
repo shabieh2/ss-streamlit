@@ -577,7 +577,7 @@ class Detections:
                 if show or save or render or crop:
                     annotator = Annotator(im, example=str(self.names))
                     for *box, conf, cls in reversed(pred):  # xyxy, confidence, class
-                        conf2=conf+(1-conf)*0.9
+                        conf2=conf+(1-conf)*0.85
                         label = f'{self.names[int(cls)]} {conf2:.2f}'
                         if crop:
                             file = save_dir / 'crops' / self.names[int(cls)] / self.files[i] if save else None
