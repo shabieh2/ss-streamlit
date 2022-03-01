@@ -17,7 +17,7 @@ im1 = Image.open('./a.png')
 st.image(im1, use_column_width=True)
 st.title("Wildfire Detection")
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg","jpeg","png"])
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg","jpeg","png","mp4"])
 if uploaded_file is not None:
     
 
